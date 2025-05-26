@@ -99,15 +99,28 @@ function setupHamburgerMenu() {
         document.body.appendChild(hamburger);
     }
     const sidebar = document.querySelector('.sidebar');
+    // Create sidebar overlay
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
     hamburger.onclick = function(e) {
         e.stopPropagation();
         sidebar.classList.toggle('open');
+        overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    };
+    overlay.onclick = function() {
+        sidebar.classList.remove('open');
+        overlay.style.display = 'none';
     };
     // Close sidebar when clicking outside (on mobile)
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 700 && sidebar.classList.contains('open')) {
             if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
                 sidebar.classList.remove('open');
+                overlay.style.display = 'none';
             }
         }
     });
@@ -116,6 +129,7 @@ function setupHamburgerMenu() {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 700) {
                 sidebar.classList.remove('open');
+                overlay.style.display = 'none';
             }
         });
     });

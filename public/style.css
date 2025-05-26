@@ -1769,4 +1769,50 @@ button:hover,
 
 .hamburger {
   display: none;
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  z-index: 1999;
+}
+.sidebar.open + .sidebar-overlay {
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .dashboard-cards, .dashboard-cards.quick-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .dashboard-card, .dashboard-quick-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 18px 8px;
+    font-size: 1em;
+    margin: 0 0 12px 0;
+  }
+  .main-content {
+    padding: 8px;
+  }
+  .dashboard-title {
+    font-size: 1.1em;
+    margin-bottom: 18px;
+  }
+}
+@media (max-width: 500px) {
+  .dashboard-card, .dashboard-quick-btn {
+    padding: 10px 2vw;
+    font-size: 0.95em;
+  }
+  .main-content {
+    padding: 2vw;
+  }
 } 
