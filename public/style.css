@@ -433,12 +433,15 @@ body {
     overflow: hidden;
     margin: 0 8px 0 0;
     animation: fadeInUp 0.7s cubic-bezier(.39,.575,.565,1) both;
+    transition: box-shadow 0.3s, background 0.3s, transform 0.18s;
 }
-.dashboard-card:hover {
-    box-shadow: 0 12px 40px rgba(33,118,174,0.18), 0 2px 8px rgba(44,62,80,0.13);
-    transform: translateY(-6px) scale(1.03);
+.dashboard-card:hover, .dashboard-card:focus {
+    box-shadow: 0 16px 48px rgba(33,118,174,0.22), 0 4px 16px rgba(44,62,80,0.13);
     background: var(--card-hover-bg);
     border-left: 6px solid #2176ae;
+    transform: scale(1.04) translateY(-4px);
+    z-index: 2;
+    cursor: pointer;
 }
 .dashboard-card .card-icon {
     font-size: 3.5em;
@@ -491,6 +494,12 @@ body {
     animation: fadeInUp 0.7s cubic-bezier(.39,.575,.565,1) both;
     font-family: 'Poppins', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
+.dashboard-quick-btn:hover, .dashboard-quick-btn:focus {
+    background: linear-gradient(90deg, #2176ae 0%, #3498db 100%);
+    box-shadow: 0 12px 40px rgba(33,118,174,0.18);
+    transform: scale(1.04) translateY(-2px);
+    cursor: pointer;
+}
 .dashboard-quick-btn .card-icon {
     font-size: 1.7em;
     margin-bottom: 0;
@@ -502,11 +511,6 @@ body {
     font-size: 1.08em;
     font-weight: 700;
     letter-spacing: 0.4px;
-}
-.dashboard-quick-btn:hover, .dashboard-quick-btn:focus {
-    background: linear-gradient(90deg, #2176ae 0%, #3498db 100%);
-    box-shadow: 0 6px 24px rgba(33,118,174,0.18);
-    transform: translateY(-2px) scale(1.04);
 }
 
 @keyframes fadeInUp {
@@ -782,6 +786,131 @@ button:hover,
     padding: 24px;
     margin-bottom: 24px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.scheduler-actions {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 18px;
+    z-index: 30;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+#add-schedule-btn {
+    margin-right: 8px;
+}
+
+.export-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 0;
+}
+
+.export-options {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    min-width: 200px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(52, 152, 219, 0.18);
+    background: #fff;
+    border: 1.5px solid #6c63ff;
+    margin-top: 8px;
+    z-index: 1001;
+    padding: 8px 0;
+    transition: opacity 0.18s;
+}
+.export-option {
+    font-size: 1.08em;
+    font-weight: 600;
+    color: #6c63ff;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 14px 28px 14px 20px;
+    text-align: left;
+    width: 100%;
+    transition: background 0.18s, color 0.18s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.export-option:hover, .export-option:focus {
+    background: #f0f4fc;
+    color: #3498db;
+}
+
+[data-theme="dark"] .export-options {
+    background: #23284a !important;
+    border: 1.5px solid #6c63ff !important;
+    box-shadow: 0 8px 32px #6c63ff33;
+}
+[data-theme="dark"] .export-option {
+    color: #bcbcff !important;
+}
+[data-theme="dark"] .export-option:hover, [data-theme="dark"] .export-option:focus {
+    background: #2a378e !important;
+    color: #fff !important;
+}
+
+.scheduler-main-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.primary-btn, .secondary-btn, #export-btn {
+    background: linear-gradient(90deg, #6c63ff 0%, #3498db 100%);
+    color: #fff;
+    border-radius: 12px;
+    font-size: 1.13em;
+    font-weight: 700;
+    padding: 14px 32px;
+    box-shadow: 0 2px 12px rgba(52, 152, 219, 0.10);
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.13s;
+    outline: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 0;
+}
+.primary-btn:hover, .secondary-btn:hover, #export-btn:hover {
+    background: linear-gradient(90deg, #3498db 0%, #6c63ff 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(52, 152, 219, 0.18);
+    transform: translateY(-2px) scale(1.04);
+}
+.secondary-btn {
+    background: #fff;
+    color: #6c63ff;
+    border: 2px solid #6c63ff;
+}
+.secondary-btn:hover {
+    background: #6c63ff;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .scheduler-actions {
+        position: static;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 18px;
+        gap: 12px;
+    }
+    .scheduler-main-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
 }
 
 .scheduler-container h2 {
@@ -833,6 +962,20 @@ button:hover,
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 0;
     padding: 1.5rem;
+    transition: box-shadow 0.3s, background 0.3s, transform 0.18s;
+}
+.course-card:hover {
+    background: #e6eaff !important;
+    box-shadow: 0 16px 48px rgba(108,99,255,0.18), 0 4px 16px rgba(44,62,80,0.13) !important;
+    border-color: #6c63ff !important;
+    transform: scale(1.04) translateY(-4px) !important;
+    z-index: 2 !important;
+    cursor: pointer !important;
+}
+[data-theme="dark"] .course-card:hover {
+    background: #2a378e !important;
+    border-color: #6c63ff !important;
+    box-shadow: 0 16px 48px #6c63ff33, 0 4px 16px #0002 !important;
 }
 .course-card h3 {
     color: #2c3e50;
@@ -1204,76 +1347,95 @@ button:hover,
 
 .export-dropdown {
     position: relative;
+    display: inline-block;
+    margin-right: 0;
+}
+
+#export-btn {
+    background: linear-gradient(90deg, #6c63ff 0%, #3498db 100%);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1.13em;
+    font-weight: 700;
+    padding: 14px 32px;
+    box-shadow: 0 2px 12px rgba(52, 152, 219, 0.10);
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.13s;
+    outline: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#export-btn:hover, #export-btn:focus {
+    background: linear-gradient(90deg, #3498db 0%, #6c63ff 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(52, 152, 219, 0.18);
+    transform: translateY(-2px) scale(1.04);
 }
 
 .export-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
     min-width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+    background: #fff;
+    border: 1.5px solid #6c63ff;
     margin-top: 8px;
+    z-index: 1000;
 }
 
 .export-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
+    font-size: 1.08em;
+    font-weight: 600;
+    color: #6c63ff;
     background: none;
-    color: var(--text-primary);
-    font-size: 0.95em;
+    border: none;
+    border-radius: 0;
+    padding: 14px 24px;
+    text-align: left;
+    width: 100%;
+    transition: background 0.18s, color 0.18s;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-.export-option:hover {
-    background-color: var(--bg-primary);
+.export-option:hover, .export-option:focus {
+    background: #f0f4fc;
+    color: #3498db;
 }
 
-.export-option i {
-    width: 16px;
-    text-align: center;
+[data-theme="dark"] .primary-btn, [data-theme="dark"] #export-btn {
+    background: linear-gradient(90deg, #3a53c5 0%, #6c63ff 100%) !important;
+    color: #fff !important;
 }
 
-/* Add a small arrow to the export button */
-.export-dropdown::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid currentColor;
-    pointer-events: none;
+[data-theme="dark"] .primary-btn:hover, [data-theme="dark"] #export-btn:hover {
+    background: linear-gradient(90deg, #6c63ff 0%, #3a53c5 100%) !important;
+    color: #fff !important;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .scheduler-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .export-dropdown {
-        width: 100%;
-    }
-    
-    .export-btn {
-        width: 100%;
-    }
-    
-    .export-options {
-        width: 100%;
-    }
+[data-theme="dark"] .secondary-btn {
+    background: #23284a !important;
+    color: #bcbcff !important;
+    border: 2px solid #6c63ff !important;
+}
+
+[data-theme="dark"] .secondary-btn:hover, [data-theme="dark"] .secondary-btn:focus {
+    background: #6c63ff !important;
+    color: #fff !important;
+}
+
+[data-theme="dark"] .export-options {
+    background: #23284a !important;
+    border: 1.5px solid #6c63ff !important;
+}
+
+[data-theme="dark"] .export-option {
+    color: #bcbcff !important;
+}
+
+[data-theme="dark"] .export-option:hover, [data-theme="dark"] .export-option:focus {
+    background: #2a378e !important;
+    color: #fff !important;
 }
 
 .student-search-bar, .room-search-bar {
@@ -1398,10 +1560,10 @@ button:hover,
 [data-theme="dark"] .dashboard-card .card-label {
     color: #bcbcff !important;
 }
-[data-theme="dark"] .dashboard-card:hover {
+[data-theme="dark"] .dashboard-card:hover, [data-theme="dark"] .dashboard-card:focus {
     background: #2d325a !important;
     border-left: 6px solid #bcbcff !important;
-    box-shadow: 0 12px 40px #6c63ff33, 0 2px 8px #0002;
+    box-shadow: 0 16px 48px #6c63ff33, 0 4px 16px #0002;
 }
 [data-theme="dark"] .dashboard-quick-btn {
     background: linear-gradient(90deg, #3a53c5 0%, #6c63ff 100%) !important;
@@ -1416,7 +1578,7 @@ button:hover,
 }
 [data-theme="dark"] .dashboard-quick-btn:hover, [data-theme="dark"] .dashboard-quick-btn:focus {
     background: linear-gradient(90deg, #6c63ff 0%, #3a53c5 100%) !important;
-    box-shadow: 0 6px 24px #6c63ff33;
+    box-shadow: 0 12px 40px #6c63ff33;
 }
 
 [data-theme="dark"] .subjects-list-container {
@@ -1448,4 +1610,108 @@ button:hover,
 [data-theme="dark"] .subjects-list-container h2,
 [data-theme="dark"] .subjects-list-container .subjects-list-header h3 {
     color: #e0e6f7 !important;
+}
+
+/* Transparent 'x' delete button for all class-blocks */
+.delete-class-btn {
+    background: rgba(231, 76, 60, 0.0) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 1.1em !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    z-index: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    position: absolute !important;
+    top: 4px !important;
+    right: 4px !important;
+    transition: background 0.18s;
+}
+.delete-class-btn:hover, .delete-class-btn:focus {
+    background: rgba(231, 76, 60, 0.85) !important;
+    color: #fff !important;
+}
+
+/* Action button styles for faculty panel */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    margin-right: 6px;
+    background: var(--accent);
+    color: #fff;
+    transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+    cursor: pointer;
+}
+.action-btn:last-child { margin-right: 0; }
+.action-btn:hover, .action-btn:focus {
+    background: #2176ae;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(52,152,219,0.13);
+}
+.edit-btn {
+    background: #3498db;
+}
+.edit-btn:hover, .edit-btn:focus {
+    background: #2176ae;
+}
+.delete-btn {
+    background: #e74c3c;
+}
+.delete-btn:hover, .delete-btn:focus {
+    background: #c0392b;
+}
+.add-btn {
+    background: #16a085;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1.08em;
+    font-weight: 700;
+    padding: 12px 28px;
+    margin-top: 18px;
+    margin-bottom: 0;
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.add-btn:hover, .add-btn:focus {
+    background: #138d75;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(22,160,133,0.13);
+}
+
+.instructor-schedule-container {
+    position: relative;
+}
+
+.scheduler-actions {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 18px;
+    z-index: 30;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+@media (max-width: 900px) {
+    .scheduler-actions {
+        position: static;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 18px;
+        gap: 12px;
+    }
 } 
