@@ -12,6 +12,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
+// Serve the main page
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 // Database Connection
 sequelize.authenticate()
     .then(() => {
