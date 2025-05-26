@@ -43,7 +43,7 @@ document.querySelector('.login form').addEventListener('submit', async (e) => {
     const password = document.querySelector('.login input[type="password"]').value;
 
     try {
-        const response = await fetch(`${API_URL}/auth/login`, {
+        const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
