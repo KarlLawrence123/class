@@ -1,11 +1,10 @@
-require('dotenv').config();
-
 const container = document.querySelector('.container');
 const registerBtn = document.querySelector('.register-btn');
 const loginBtn = document.querySelector('.login-btn');
 
 // API URL
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://your-app.onrender.com/api'; // Use your actual deployed URL
+
 
 const registerForm = document.querySelector('.register form');
 if (registerForm) {
