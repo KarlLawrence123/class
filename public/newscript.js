@@ -86,7 +86,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     setupFileUpload();
     showDashboard(); // Show dashboard by default after login
+    setupHamburgerMenu(); // Add this line
 });
+
+function setupHamburgerMenu() {
+    // Create hamburger button
+    let hamburger = document.querySelector('.hamburger');
+    if (!hamburger) {
+        hamburger = document.createElement('button');
+        hamburger.className = 'hamburger';
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.appendChild(hamburger);
+    }
+    const sidebar = document.querySelector('.sidebar');
+    hamburger.onclick = function(e) {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+    };
+    // Close sidebar when clicking outside (on mobile)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 700 && sidebar.classList.contains('open')) {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        }
+    });
+    // Close sidebar when clicking a menu item (on mobile)
+    sidebar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 700) {
+                sidebar.classList.remove('open');
+            }
+        });
+    });
+}
 
 // Navigation setup
 function initializeNavigation() {
