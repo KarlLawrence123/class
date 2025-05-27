@@ -464,25 +464,25 @@ body {
     letter-spacing: 0.7px;
 }
 
-/* Desktop/large screen: Big, prominent quick action buttons */
+/* Desktop/large screen: Quick actions fill the row and match stat cards */
 .dashboard-cards.quick-actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 32px;
     justify-content: flex-start;
     margin-bottom: 32px;
 }
 .dashboard-quick-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    min-height: 120px;
+    height: 140px;
+    border-radius: 20px;
     background: linear-gradient(90deg, #3a53c5 0%, #4f6bed 100%);
     color: #fff;
-    border-radius: 20px;
     box-shadow: 0 4px 16px rgba(33,118,174,0.13);
-    padding: 32px 48px;
-    min-width: 220px;
-    min-height: 120px;
-    max-width: 320px;
-    max-height: 180px;
-    flex: 1 1 220px;
+    padding: 32px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
