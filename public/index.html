@@ -11,20 +11,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+    <button class="hamburger" aria-label="Open sidebar">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="6" width="28" height="3" rx="1.5" fill="#3a53c5"/>
+            <rect y="13" width="28" height="3" rx="1.5" fill="#3a53c5"/>
+            <rect y="20" width="28" height="3" rx="1.5" fill="#3a53c5"/>
+        </svg>
+    </button>
+    <div class="sidebar-overlay"></div>
     <div class="container">
         <nav class="sidebar">
             <h2>Class Scheduler</h2>
             <p class="sidebar-welcome">Welcome back!</p>
             <ul>
-                <li><a href="#" id="dashboard-link" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="#" id="auto-generate-link"><i class="fas fa-magic"></i> Auto Generate Schedule</a></li>
-                <li><a href="#" id="scheduler-link"><i class="fas fa-calendar-alt"></i> Class Schedule</a></li>
-                <li><a href="#" id="teachers-link"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
-                <li><a href="#" id="instructor-schedule-link"><i class="fas fa-user-tie"></i> Instructor Schedule</a></li>
-                <li><a href="#" id="students-link"><i class="fas fa-user-graduate"></i> Student</a></li>
-                <li><a href="#" id="courses-link"><i class="fas fa-book"></i> Course</a></li>
-                <li><a href="#" id="rooms-link"><i class="fas fa-door-open"></i> Rooms</a></li>
-                <li><a href="#" id="logout-link" style="color: #e74c3c;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li><a href="#" id="dashboard-link" class="active" title="Dashboard"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li><a href="#" id="auto-generate-link" title="Auto Generate Schedule"><i class="fas fa-magic"></i><span>Auto Generate Schedule</span></a></li>
+                <li><a href="#" id="scheduler-link" title="Class Schedule"><i class="fas fa-calendar-alt"></i><span>Class Schedule</span></a></li>
+                <li><a href="#" id="teachers-link" title="Faculty"><i class="fas fa-chalkboard-teacher"></i><span>Faculty</span></a></li>
+                <li><a href="#" id="instructor-schedule-link" title="Instructor Schedule"><i class="fas fa-user-tie"></i><span>Instructor Schedule</span></a></li>
+                <li><a href="#" id="students-link" title="Student"><i class="fas fa-user-graduate"></i><span>Student</span></a></li>
+                <li><a href="#" id="courses-link" title="Course"><i class="fas fa-book"></i><span>Course</span></a></li>
+                <li><a href="#" id="rooms-link" title="Rooms"><i class="fas fa-door-open"></i><span>Rooms</span></a></li>
+                <li><a href="#" id="logout-link" style="color: #e74c3c;" title="Logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
             </ul>
         </nav>
         <main class="main-content" id="main-content">
